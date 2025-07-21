@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Touch Event Demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #fafafa;
+    }
+
+    #touchBox {
+      width: 200px;
+      height: 200px;
+      background-color: #007aff;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      text-align: center;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="touchBox">Touch Me</div>
+  <div id="status">Waiting for touch...</div>
+
+  <script>
+    const box = document.getElementById('touchBox');
+    const status = document.getElementById('status');
+
+    box.addEventListener('touchstart', () => {
+      box.style.backgroundColor = '#34c759';
+      status.textContent = 'Touch detected!';
+    });
+
+    box.addEventListener('touchend', () => {
+      box.style.backgroundColor = '#007aff';
+      status.textContent = 'Touch ended!';
+    });
+
+    // Prevent click from working if you want ONLY touch:
+    box.addEventListener('click', (e) => {
+      e.preventDefault();
+      status.textContent = 'Click ignored (touch only).';
+    });
+  </script>
+
+</body>
+</html>

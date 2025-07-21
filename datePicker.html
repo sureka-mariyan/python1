@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Picker with Alert</title>
+</head>
+<body>
+    <h2>Select a Date:</h2>
+    <label for="date">Pick a Date:</label>
+    <input type="date" id="date" name="date">
+    <button id="submit">Submit</button>
+
+    <script>
+        document.getElementById("submit").addEventListener("click", function () {
+            const selectedDate = document.getElementById("date").value;
+            
+            if (selectedDate) {
+                alert("You selected the date: " + selectedDate); // Show the selected date
+            } else {
+                alert("Please select a date!"); // Show a prompt if no date was selected
+            }
+        });
+    </script>
+</body>
+</html>

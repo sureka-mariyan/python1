@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy and Paste Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Copy and Paste Event Handling</h2>
+
+    <p>Try copying and pasting text using Ctrl+C (or Cmd+C on Mac) and Ctrl+V!</p>
+
+    <!-- Text area for demonstration -->
+    <textarea id="inputArea" rows="5" placeholder="Type something here..."></textarea>
+
+    <!-- Button to trigger actions -->
+    <button id="showTextButton">Show Text</button>
+
+    <script>
+        // Function to show alert popup on copy event
+        document.addEventListener('copy', function(event) {
+            alert("You copied some text!");
+        });
+
+        // Function to show alert popup on paste event
+        document.addEventListener('paste', function(event) {
+            alert("You pasted some text!");
+        });
+
+        // Optional: Show text when clicking the button
+        document.getElementById('showTextButton').addEventListener('click', function() {
+            const text = document.getElementById('inputArea').value;
+            alert("Text in the area: " + text);
+        });
+    </script>
+
+</body>
+</html>

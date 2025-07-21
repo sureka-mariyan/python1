@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox and Radio Buttons Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            margin-left: 5px;
+            font-weight: bold;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+        .form-group input[type="submit"] {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Checkbox and Radio Buttons Example</h1>
+
+        <!-- Form to demonstrate checkboxes and radio buttons -->
+        <form id="myForm" method="post">
+
+            <!-- Checkbox Group -->
+            <div class="form-group">
+                <label for="check1">
+                    <input type="checkbox" id="check1" name="features" value="Feature 1">
+                    Feature 1
+                </label>
+                <br>
+                <label for="check2">
+                    <input type="checkbox" id="check2" name="features" value="Feature 2">
+                    Feature 2
+                </label>
+                <br>
+                <label for="check3">
+                    <input type="checkbox" id="check3" name="features" value="Feature 3">
+                    Feature 3
+                </label>
+                <br>
+                <label for="check4">
+                    <input type="checkbox" id="check4" name="features" value="Feature 4">
+                    Feature 4
+                </label>
+            </div>
+
+            <!-- Radio Button Group -->
+            <div class="form-group">
+                <label for="radio1">
+                    <input type="radio" id="radio1" name="color" value="Red">
+                    Red
+                </label>
+                <br>
+                <label for="radio2">
+                    <input type="radio" id="radio2" name="color" value="Green">
+                    Green
+                </label>
+                <br>
+                <label for="radio3">
+                    <input type="radio" id="radio3" name="color" value="Blue">
+                    Blue
+                </label>
+                <br>
+                <label for="radio4">
+                    <input type="radio" id="radio4" name="color" value="Purple">
+                    Purple
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        // Function to handle the form submission and show a popup message
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting (page reload)
+
+            // Get selected checkboxes values
+            let selectedFeatures = [];
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxes.forEach(function(checkbox) {
+                selectedFeatures.push(checkbox.value);
+            });
+
+            // Get selected radio button value
+            const selectedColor = document.querySelector('input[type="radio"]:checked');
+            const colorValue = selectedColor ? selectedColor.value : 'None';
+
+            // Display the selected options in a popup
+            let message = "You selected the following:\n\n";
+
+            if (selectedFeatures.length > 0) {
+                message += "Features:\n" + selectedFeatures.join('\n') + "\n\n";
+            } else {
+                message += "No features selected.\n\n";
+            }
+
+            message += "Color: " + colorValue;
+
+            alert(message); // Show the popup
+        });
+    </script>
+
+</body>
+</html>

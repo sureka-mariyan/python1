@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 1 - Set Context</title>
+</head>
+<body>
+    <h2>Set User Name and Email (Browser Context)</h2>
+
+    <!-- Username input -->
+    <input type="text" id="username" placeholder="Please enter your name" />
+    <button onclick="saveName()">Save Name</button>
+    <br><br>
+
+    <!-- Email input -->
+    <input type="text" id="emailid" placeholder="Please enter your email" />
+    <button onclick="saveEmail()">Save Email</button>
+    <br><br>
+
+    <!-- Phone input -->
+    <input type="text" id="phone" placeholder="Please enter your phone number" />
+    <button onclick="savePhone()">Save Phone</button>
+
+    <style>
+        body {
+            background-color: rgb(177, 177, 239);
+            font-family: sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        #username, #emailid, #phone {
+            background-color: #f0f8ff;
+            color: rgb(17, 16, 16);
+            font-size: 16px;
+            width: 300px;
+            height: 40px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        #username::placeholder,
+        #emailid::placeholder, 
+        #phone::placeholder {
+            color: rgb(235, 95, 202);
+            opacity: 1;
+            font-size: 20px;
+        }
+        button {
+            width: 120px;
+            height: 30px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+    </style>
+
+    <p><a href="page2.html">Go to Page 2</a></p>
+
+    <script>
+        function saveName() {
+            const name = document.getElementById('username').value;
+            localStorage.setItem('userName', name);
+            alert('Name saved to browser context!');
+        }
+
+        function saveEmail() {
+            const email = document.getElementById('emailid').value;
+            localStorage.setItem('userEmail', email);
+            alert('Email saved to browser context!');
+        }
+
+        function savePhone() {
+            const phone = document.getElementById('phone').value;
+            localStorage.setItem('userPhone', phone);
+            alert('Phone number saved to browser context!');
+        }
+    </script>
+</body>
+</html>

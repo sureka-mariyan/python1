@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click, Double-click, and Right-click Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        .action-box {
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            cursor: pointer;
+        }
+        .action-box:hover {
+            background-color: #f0f0f0;
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Click, Double-click, and Right-click Events</h1>
+
+        <!-- Action box for click, double-click, and right-click -->
+        <div class="action-box" id="clickBox">
+            Click, Double-click, or Right-click on this box
+        </div>
+
+        <!-- Message display area -->
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const messageElement = document.getElementById('message');
+        const clickBox = document.getElementById('clickBox');
+
+        // Click event
+        clickBox.addEventListener('click', () => {
+            messageElement.innerText = "You clicked the box!";
+        });
+
+        // Double-click event
+        clickBox.addEventListener('dblclick', () => {
+            messageElement.innerText = "You double-clicked the box!";
+        });
+
+        // Right-click event (context menu)
+        clickBox.addEventListener('contextmenu', (event) => {
+            event.preventDefault(); // Prevent the context menu from appearing
+            messageElement.innerText = "You right-clicked the box!";
+        });
+    </script>
+
+</body>
+</html>

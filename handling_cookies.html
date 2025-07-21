@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cookie Example</title>
+  <script>
+    // Set a cookie
+    function setCookie() {
+      const name = document.getElementById("nameInput").value;
+      document.cookie = "username=" + name + "; path=/; max-age=86400"; // 1 day
+      alert("Cookie set for user: " + name);
+    }
+
+    // Get a cookie
+    function getCookie() {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const c = cookies[i].trim();
+        if (c.indexOf("username=") === 0) {
+          const username = c.substring("username=".length, c.length);
+          alert("Welcome back, " + username);
+          return;
+        }
+      }
+      alert("No username cookie found.");
+    }
+
+    // Simple alert to confirm page is working
+    window.onload = function () {
+      alert("Page loaded. JS is working!");
+    };
+  </script>
+</head>
+<body>
+  <h2>Cookie Handling check</h2>
+  <label>Enter Name: </label>
+  <input type="text" id="nameInput" placeholder="Your name">
+  <br><br>
+  <button onclick="setCookie()">Set Cookie</button>
+  <button onclick="getCookie()">Get Cookie</button>
+</body>
+</html>

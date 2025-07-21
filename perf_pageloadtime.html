@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Load Time Measurement</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+    .load-time {
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to the Page</h1>
+  <p>Page load time: <span class="load-time" id="loadTime">Calculating...</span></p>
+
+  <script>
+    window.addEventListener('load', () => {
+      const timing = performance.timing;
+      const loadTime = (timing.loadEventEnd - timing.navigationStart) / 1000;
+
+      console.log(`Page load time: ${loadTime} seconds`);
+      document.getElementById('loadTime').textContent = `${loadTime.toFixed(2)} seconds`;
+    });
+  </script>
+</body>
+</html>

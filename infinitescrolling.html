@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Infinite Scroll Cards</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+
+    .header {
+      background: #333;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgb(255, 255, 255);
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    #loader {
+      text-align: center;
+      padding: 30px;
+      font-size: 1.2em;
+      color: #555;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Infinite Scroll Gallery Test using playwright</h1>
+  </div>
+
+  <div class="container" id="container"></div>
+  <div id="loader">Loading more cards...</div>
+
+  <script>
+    const container = document.getElementById('container');
+    const loader = document.getElementById('loader');
+    let cardCount = 0;
+    let loading = false;
+
+    function createCard(index) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>Card number ${index}</h3>
+        <p>This is card number ${index}. It was dynamically loaded as you scroll!</p>
+      `;
+      return card;
+    }
+
+    function loadMoreCards() {
+      if (loading) return;
+      loading = true;
+      loader.style.display = 'block';
+
+      setTimeout(() => {
+        for (let i = 0; i < 12; i++) {
+          cardCount++;
+          const card = createCard(cardCount);
+          container.appendChild(card);
+        }
+        loader.style.display = 'none';
+        loading = false;
+      }, 800);
+    }
+
+    function fillToEnableScroll() {
+      const maxTries = 5;
+      let tries = 0;
+
+      function tryLoad() {
+        if (document.body.scrollHeight <= window.innerHeight && tries < maxTries) {
+          loadMoreCards();
+          tries++;
+          setTimeout(tryLoad, 500);
+        }
+      }
+
+      tryLoad();
+    }
+
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+        loadMoreCards();
+      }
+    });
+
+    // Load initial cards and make sure the page is scrollable
+    loadMoreCards();
+    fillToEnableScroll();
+  </script>
+</body>
+</html>

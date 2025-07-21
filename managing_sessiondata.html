@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Storage Manager</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .storage-section { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; }
+    label, input, button { display: block; margin: 10px 0; }
+    .output { background: #f4f4f4; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Local & Session Storage Manager</h1>
+
+  <div class="storage-section">
+    <h2>Local Storage</h2>
+    <label>Key: <input id="local-key" /></label>
+    <label>Value: <input id="local-value" /></label>
+    <button onclick="setLocalStorage()">Set Local Storage</button>
+    <button onclick="getLocalStorage()">Get Local Storage</button>
+    <button onclick="removeLocalStorage()">Remove Key</button>
+    <button onclick="clearLocalStorage()">Clear Local Storage</button>
+    <div class="output" id="local-output"></div>
+  </div>
+
+  <div class="storage-section">
+    <h2>Session Storage</h2>
+    <label>Key: <input id="session-key" /></label>
+    <label>Value: <input id="session-value" /></label>
+    <button onclick="setSessionStorage()">Set Session Storage</button>
+    <button onclick="getSessionStorage()">Get Session Storage</button>
+    <button onclick="removeSessionStorage()">Remove Key</button>
+    <button onclick="clearSessionStorage()">Clear Session Storage</button>
+    <div class="output" id="session-output"></div>
+  </div>
+
+  <script>
+    function setLocalStorage() {
+      const key = document.getElementById('local-key').value;
+      const value = document.getElementById('local-value').value;
+      localStorage.setItem(key, value);
+      document.getElementById('local-output').textContent = `Set: ${key} = ${value}`;
+    }
+
+    function getLocalStorage() {
+      const key = document.getElementById('local-key').value;
+      const value = localStorage.getItem(key);
+      document.getElementById('local-output').textContent = value !== null
+        ? `Retrieved: ${key} = ${value}`
+        : `Key "${key}" not found in Local Storage.`;
+    }
+
+    function removeLocalStorage() {
+      const key = document.getElementById('local-key').value;
+      localStorage.removeItem(key);
+      document.getElementById('local-output').textContent = `Removed key: ${key}`;
+    }
+
+    function clearLocalStorage() {
+      localStorage.clear();
+      document.getElementById('local-output').textContent = `Local Storage cleared.`;
+    }
+
+    function setSessionStorage() {
+      const key = document.getElementById('session-key').value;
+      const value = document.getElementById('session-value').value;
+      sessionStorage.setItem(key, value);
+      document.getElementById('session-output').textContent = `Set: ${key} = ${value}`;
+    }
+
+    function getSessionStorage() {
+      const key = document.getElementById('session-key').value;
+      const value = sessionStorage.getItem(key);
+      document.getElementById('session-output').textContent = value !== null
+        ? `Retrieved: ${key} = ${value}`
+        : `Key "${key}" not found in Session Storage.`;
+    }
+
+    function removeSessionStorage() {
+      const key = document.getElementById('session-key').value;
+      sessionStorage.removeItem(key);
+      document.getElementById('session-output').textContent = `Removed key: ${key}`;
+    }
+
+    function clearSessionStorage() {
+      sessionStorage.clear();
+      document.getElementById('session-output').textContent = `Session Storage cleared.`;
+    }
+  </script>
+</body>
+</html>

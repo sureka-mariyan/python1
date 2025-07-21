@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 2 - Use Context</title>
+</head>
+<body>
+    <h2>Welcome Page</h2>
+    <p id="welcomeMsg1"></p>
+    <p id="welcomeMsg2"></p>
+    <p id="welcomeMsg3"></p>
+
+    <p><a href="page1.html">Back to Page 1</a></p>
+    <style>
+        body {
+          background-color: rgb(178, 241, 154);
+          font-family: sans-serif;
+          padding: 20px;
+          text-align: center;
+        }
+        #welcomeMsg1, #welcomeMsg2, #welcomeMsg3{
+            font-size: 30px;
+            color:rgb(255, 51, 0);
+            font-weight: 700;
+        }
+        h2 {
+            font-size: 36px; /* You can adjust this value */
+        }
+
+        }
+    </style>
+
+    <script>
+        const name = localStorage.getItem('userName');
+        if (name) {
+            document.getElementById('welcomeMsg1').textContent = `Hello, ${name}! Welcome back.`;
+        } else {
+            document.getElementById('welcomeMsg1').textContent = `No user name found in browser context.`;
+        }
+    </script>
+
+    <script>
+        const email = localStorage.getItem('userEmailID');
+        if (name) {
+            document.getElementById('welcomeMsg2').textContent = `Your email is ${email}!`;
+        } else {
+            document.getElementById('welcomeMsg2').textContent = `No email found in browser context.`;
+        }
+    </script>
+
+    <script>
+        const phone = localStorage.getItem('userPhone');
+        if (name) {
+            document.getElementById('welcomeMsg3').textContent = `Your phone number is ${phone}!`;
+        } else {
+            document.getElementById('welcomeMsg3').textContent = `No phone number found in browser context.`;
+        }
+    </script>
+</body>
+</html>

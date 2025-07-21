@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Modal Popup</title>
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            width: 300px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Custom Modal Popup Example</h2>
+    <button onclick="openModal()">Open Modal</button>
+    <button onclick="openModal2()">Open Modal2</button>
+    <button onclick="openModal3()">Open Modal3</button>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <p>This is a custom modal popup!</p>
+        </div>
+    </div>
+
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal2()">&times;</span>
+            <p>This is a custom modal popup!</p>
+        </div>
+    </div>
+
+    <div id="myModal3" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal3()">&times;</span>
+            <p>This is a custom modal popup!</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+    
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+    
+        function openModal2() {
+            document.getElementById("myModal2").style.display = "block";
+        }
+    
+        function closeModal2() {
+            document.getElementById("myModal2").style.display = "none";
+        }
+    
+        function openModal3() {
+            document.getElementById("myModal3").style.display = "block";
+        }
+    
+        function closeModal3() {
+            document.getElementById("myModal3").style.display = "none";
+        }
+    
+        // Unified click-outside handler for all modals
+        window.onclick = function(event) {
+            const modals = ["myModal", "myModal2", "myModal3"];
+            modals.forEach(function(id) {
+                const modal = document.getElementById(id);
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Popup Event Listener Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    #popupOverlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #popupBox {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      max-width: 300px;
+      width: 90%;
+      text-align: center;
+    }
+
+    button {
+      padding: 8px 16px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-close {
+      background: #f44336;
+      color: white;
+      border: none;
+    }
+
+    .btn-ok {
+      background: #4CAF50;
+      color: white;
+      border: none;
+    }
+
+    /* Custom Alert Styles */
+    #customAlertOverlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #customAlertBox {
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      min-width: 250px;
+      text-align: center;
+      color: #000;
+    }
+
+    #customAlertBox button {
+      margin-top: 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Popup Interaction Example</h2>
+  <button id="openPopup">Open Popup</button>
+
+  <div id="popupOverlay">
+    <div id="popupBox">
+      <p>Do you want to proceed?</p>
+      <button class="btn-ok" id="confirmBtn">Yes</button>
+      <button class="btn-close" id="cancelBtn">No</button>
+    </div>
+  </div>
+
+  <!-- Custom Alert HTML -->
+  <div id="customAlertOverlay">
+    <div id="customAlertBox">
+      <p id="customAlertMessage"></p>
+      <button onclick="closeCustomAlert()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const openPopup = document.getElementById("openPopup");
+    const popupOverlay = document.getElementById("popupOverlay");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+
+    const customAlertOverlay = document.getElementById("customAlertOverlay");
+    const customAlertBox = document.getElementById("customAlertBox");
+    const customAlertMessage = document.getElementById("customAlertMessage");
+
+    function showCustomAlert(message, bgColor = "#fff") {
+      customAlertMessage.textContent = message;
+      customAlertBox.style.backgroundColor = bgColor;
+      customAlertOverlay.style.display = "flex";
+    }
+
+    function closeCustomAlert() {
+      customAlertOverlay.style.display = "none";
+    }
+
+    // Show popup
+    openPopup.addEventListener("click", () => {
+      popupOverlay.style.display = "flex";
+    });
+
+    // Confirm action
+    confirmBtn.addEventListener("click", () => {
+      showCustomAlert("✅ You clicked YES!", "#d4edda"); // light green
+      popupOverlay.style.display = "none";
+    });
+
+    // Cancel action
+    cancelBtn.addEventListener("click", () => {
+      showCustomAlert("❌ You clicked NO!", "#f8d7da"); // light red
+      popupOverlay.style.display = "none";
+    });
+
+    popupOverlay.addEventListener("click", (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>

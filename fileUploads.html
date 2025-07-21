@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .file-input-wrapper {
+      margin: 2rem 0;
+      background-color: #f1f5f9;
+      border: 2px dashed #cbd5e1;
+      padding: 1rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .file-input-wrapper input[type="file"] {
+      display: none;
+    }
+
+    .file-input-wrapper label {
+      cursor: pointer;
+      color: #4b5563;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: 2px solid #4b5563;
+      border-radius: 8px;
+      background-color: #e5e7eb;
+      transition: background-color 0.2s;
+    }
+
+    .file-input-wrapper label:hover {
+      background-color: #d1d5db;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .success-message {
+      color: green;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Upload Your File</h1>
+    <form id="uploadForm">
+      <div class="file-input-wrapper">
+        <input type="file" id="fileInput" name="fileInput" />
+        <label for="fileInput">Choose File</label>
+      </div>
+
+      <button type="submit">Upload</button>
+
+      <div class="success-message" id="successMessage">
+        File uploaded successfully!
+      </div>
+      <div class="error-message" id="errorMessage">
+        There was an error uploading the file.
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Handle form submission
+    document.getElementById('uploadForm').addEventListener('submit', function (e) {
+      e.preventDefault();  // Prevent the form from submitting the traditional way
+
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+
+      if (file) {
+        // Simulating the file upload process (use your actual upload code here)
+        setTimeout(function () {
+          // Simulate a successful file upload
+          document.getElementById('successMessage').style.display = 'block';
+          document.getElementById('errorMessage').style.display = 'none';
+        }, 2000);
+      } else {
+        // Simulate an error if no file is selected
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>

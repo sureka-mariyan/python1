@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobile Responsive with User Agent Emulation</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: hwb(271 0% 0%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .device-info {
+      margin-top: 20px;
+      padding: 15px;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      header {
+        font-size: 1.2em;
+        padding: 15px;
+      }
+
+      .device-info {
+        font-size: 0.95em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Responsive & Device Aware Web Page
+  </header>
+
+  <div class="device-info" id="deviceInfo">
+    Detecting device and user agent...
+  </div>
+
+  <script>
+    const deviceInfo = document.getElementById('deviceInfo');
+    const userAgent = navigator.userAgent;
+
+    // Device detection
+    let deviceType = "Desktop";
+    if (/Mobi|Android/i.test(userAgent)) {
+      deviceType = "Mobile";
+    } else if (/Tablet|iPad/i.test(userAgent)) {
+      deviceType = "Tablet";
+    }
+
+    // Browser detection
+    let browser = "Unknown Browser";
+    if (userAgent.includes("Chrome") && !userAgent.includes("Edg") && !userAgent.includes("OPR")) {
+      browser = "Google Chrome";
+    } else if (userAgent.includes("Firefox")) {
+      browser = "Mozilla Firefox";
+    } else if (userAgent.includes("Safari") && !userAgent.includes("Chrome")) {
+      browser = "Safari";
+    } else if (userAgent.includes("Edg")) {
+      browser = "Microsoft Edge";
+    } else if (userAgent.includes("OPR") || userAgent.includes("Opera")) {
+      browser = "Opera";
+    }
+
+    deviceInfo.innerHTML = `
+      <strong>Device Type:</strong> ${deviceType} <br>
+      <strong>Browser:</strong> ${browser} <br>
+      <strong>User Agent:</strong> ${userAgent}
+    `;
+  </script>
+
+</body>
+</html>
