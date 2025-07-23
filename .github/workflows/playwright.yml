@@ -9,8 +9,14 @@ on:
 jobs:
   test:
     runs-on: windows-latest
-
+  
     steps:
+    - name: List files for debug
+      run: |
+        echo "Current directory: $(pwd)"
+        echo "Files in repo:"
+        ls -R
+        
     - name: Checkout code
       uses: actions/checkout@v3
 
