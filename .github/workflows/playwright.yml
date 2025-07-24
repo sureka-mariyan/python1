@@ -35,5 +35,8 @@ jobs:
 
       - name: Run Playwright Tests
         run: |
-          pytest
+            xvfb-run .venv/bin/python -m pytest ${{ github.event.inputs.pytest_command || '-m "not devRun"' }} \
+            --base-url ${{ vars.BASE_URL }} \
+            --splits ${{ github.event.inputs.parallelism || 2 }} \
+            --group ${{ matrix.group }}
 
