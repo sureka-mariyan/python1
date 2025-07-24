@@ -35,5 +35,5 @@ jobs:
 
       - name: Run Playwright Tests
         run: |
-          pytest test D:\a\python1\python1\playwright-tests\tests
+          pytest D:\a\python1\python1\playwright-tests
 
