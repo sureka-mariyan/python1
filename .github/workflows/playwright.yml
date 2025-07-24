@@ -26,6 +26,6 @@ jobs:
           playwright install
 
       - name: Run Playwright Tests
-        run: python tests\check.py
+        run: pytest tests
             
 
