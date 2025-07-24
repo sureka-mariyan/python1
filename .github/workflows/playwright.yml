@@ -14,14 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Debug file structure
-        run: ls -R
-
-      - name: List files for debug
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Files in repo:"
-          ls -R
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -34,9 +26,6 @@ jobs:
           playwright install
 
       - name: Run Playwright Tests
-        run: |
-            xvfb-run .venv/bin/python -m pytest ${{ github.event.inputs.pytest_command || '-m "not devRun"' }} \
-            --base-url ${{ vars.BASE_URL }} \
-            --splits ${{ github.event.inputs.parallelism || 2 }} \
-            --group ${{ matrix.group }}
+        run: pytest
+            
 
